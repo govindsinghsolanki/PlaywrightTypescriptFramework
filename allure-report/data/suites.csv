@@ -1,0 +1,4 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","10201","Verify title1","chromium","2026-08-19","failed","2026-08-19","","example1.spec.ts","",""
+"","5170","Verify title2","chromium","2026-08-19","passed","2026-08-19","","example1.spec.ts","",""
+"","2171","Verify title3","chromium","2026-08-19","passed","2026-08-19","","example1.spec.ts","",""

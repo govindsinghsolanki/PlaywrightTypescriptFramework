@@ -1,0 +1,34 @@
+{
+  "name": "pwtypescriptframework",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test_qa": "cross-env ENV_NAME=qa npx playwright test",
+    "test_uat": "cross-env ENV_NAME=uat npx playwright test",
+    "test_qa_cr_hd": "cross-env ENV_NAME=qa npx playwright test --project=chromium --headed",
+    "test_qa_fx_hd": "cross-env ENV_NAME=qa npx playwright test --project=firefox --headed",
+    "test_qa_cr_hl": "cross-env ENV_NAME=qa npx playwright test --project=chromium",
+    "test_qa_fx_hl": "cross-env ENV_NAME=qa npx playwright test --project=firefox",
+    "test_qa_cr_ui": "cross-env ENV_NAME=qa npx playwright test --project=chromium --ui",
+    "test_qa_cr_tag": "cross-env ENV_NAME=qa npx playwright test --project=chromium --headed --grep=@Functional",
+    "allure-clean":   "rm -rf allure-results allure-report",
+    "allure-report":  "npx allure generate allure-results --clean -o allure-report && npx allure open allure-report"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@types/crypto-js": "^4.2.2",
+    "@types/node": "^26.2.0",
+    "allure-commandline": "^2.43.0",
+    "allure-playwright": "^3.10.2"
+  },
+  "dependencies": {
+    "cross-env": "^10.1.0",
+    "crypto-js": "^4.2.0",
+    "dotenv": "^17.4.2"
+  }
+}
