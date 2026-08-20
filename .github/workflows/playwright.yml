@@ -21,7 +21,7 @@ jobs:
       env:
          ENV_NAME: qa
          SECRET_KEY: ${{ secrets.SECRET_KEY }}
-      run: npx playwright test tests/login-module.spec.ts --project=firefox --update-snapshots
+      run: npx playwright test tests/login-module.spec.ts --project=webkit --update-snapshots
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
