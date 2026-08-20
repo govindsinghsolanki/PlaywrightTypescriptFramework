@@ -17,14 +17,14 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
-    - name: Run Playwright tests
+    - name: Generate Playwright Linux snapshots
       env:
          ENV_NAME: qa
          SECRET_KEY: ${{ secrets.SECRET_KEY }}
-      run: npx playwright test
+      run: npx playwright test tests/login-module.spec.ts --project=firefox --update-snapshots
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
-         name: playwright-report
-         path: playwright-report/
+         name: playwright-snapshots
+         path: tests/**/*-snapshots/
          retention-days: 30
