@@ -1,0 +1,99 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: create-employee.spec.ts >> EMP-003 - Delete employee
+- Location: tests\create-employee.spec.ts:24:6
+
+# Error details
+
+```
+Test timeout of 30000ms exceeded.
+```
+
+```
+Error: locator.click: Target page, context or browser has been closed
+Call log:
+  - waiting for getByRole('button', { name: 'Add' })
+    - waiting for "https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewPimModule" navigation to finish...
+    - waiting for navigation to finish...
+    - navigated to "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
+
+```
+
+# Test source
+
+```ts
+  1  | import{Locator,Page} from "@playwright/test"
+  2  | import{EmployeeData} from "../types/EmployeeData";
+  3  | import{BasePage} from "./BasePage";
+  4  | 
+  5  | export class EmployeePage extends BasePage{
+  6  |         // private readonly page:Page;
+  7  |         private readonly addPimButton:Locator;
+  8  |         private readonly firstNameTextBox:Locator;
+  9  |         private readonly middleNameTextBox:Locator;
+  10 |         private readonly lastNameTextBox:Locator;
+  11 |         private readonly employeeIdTextBox:Locator;
+  12 |         private readonly newEmployeeNameHeading:Locator;
+  13 |         private readonly employeeListTab:Locator;
+  14 |         private readonly employeeTable:Locator;
+  15 |         private readonly saveButton:Locator;
+  16 |     
+  17 |         constructor(page:Page){
+  18 |             super(page);
+  19 |             // this.page=page;
+  20 |             this.addPimButton=page.getByRole('button',{name:'Add'});
+  21 |             this.firstNameTextBox=page.getByRole('textbox',{name:'First Name'});
+  22 |             this.middleNameTextBox=page.getByRole('textbox',{name:'Middle Name'});
+  23 |             this.lastNameTextBox=page.getByRole('textbox',{name:'Last Name'});
+  24 |             this.employeeIdTextBox=page.locator('.oxd-input-group').filter({hasText:'Employee Id'}).locator('input');
+  25 |             this.employeeListTab=page.locator('.oxd-topbar-body-nav li').filter({hasText:'Employee List'});
+  26 |             this.saveButton=page.getByRole('button',{name:'Save'});
+  27 |             this.newEmployeeNameHeading=page.locator('.orangehrm-edit-employee-name');
+  28 |             this.employeeTable= page.getByRole('table');
+  29 |         }
+  30 |     
+  31 |     
+  32 |         /**
+  33 |          * To add new employee
+  34 |          * @param firstName 
+  35 |          * @param middleName 
+  36 |          * @param lastName 
+  37 |          */
+  38 |          async addEmployee(employee:EmployeeData):Promise<void>{
+> 39 |             await this.addPimButton.click();
+     |                                     ^ Error: locator.click: Target page, context or browser has been closed
+  40 |             await this.firstNameTextBox.fill(employee.firstName);
+  41 |             await this.middleNameTextBox.fill(employee.middleName);
+  42 |             await this.lastNameTextBox.fill(employee.lastName);
+  43 |             await this.employeeIdTextBox.fill(employee.employeeId);
+  44 |             await this.saveButton.click();
+  45 |         }
+  46 |     
+  47 |          getNewAddedEmployeeName():Locator{
+  48 |             return this.newEmployeeNameHeading;
+  49 |         }
+  50 |         
+  51 |         async searchEmployee(empId:string){ 
+  52 |             await this.employeeListTab.click();
+  53 |             await this.employeeIdTextBox.fill(empId);
+  54 |             await this.clickOnSearch();
+  55 |         }
+  56 |        getEmployeeByName(empName: string):Locator {
+  57 |             return this.employeeTable.locator('.oxd-table-body').getByRole('cell').filter({ hasText: empName });
+  58 |       }
+  59 | 
+  60 |         async deleteEmployee(empId:string){
+  61 |             await this.searchEmployee(empId);
+  62 |             const employeeRow=this.employeeTable.locator('.oxd-table-body .oxd-table-row').filter({hasText:empId});
+  63 |             await employeeRow.locator('i.bi-trash').click();
+  64 |         }
+  65 | 
+  66 |     }
+  67 | 
+```

@@ -1,0 +1,920 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: admin.spec.ts >> Edit User
+- Location: tests\admin.spec.ts:39:6
+
+# Error details
+
+```
+Error: locator.click: Error: strict mode violation: locator('.oxd-icon-button .bi-pencil-fill') resolved to 50 elements:
+    1) <i data-v-bddebfba="" data-v-f5c763eb="" class="oxd-icon bi-pencil-fill"></i> aka getByRole('button').filter({ hasText: /^$/ }).nth(4)
+    2) <i data-v-bddebfba="" data-v-f5c763eb="" class="oxd-icon bi-pencil-fill"></i> aka locator('div:nth-child(2) > .oxd-table-row > div:nth-child(6) > .oxd-table-cell-actions > button:nth-child(2)')
+    3) <i data-v-bddebfba="" data-v-f5c763eb="" class="oxd-icon bi-pencil-fill"></i> aka locator('div:nth-child(3) > .oxd-table-row > div:nth-child(6) > .oxd-table-cell-actions > button:nth-child(2)')
+    4) <i data-v-bddebfba="" data-v-f5c763eb="" class="oxd-icon bi-pencil-fill"></i> aka locator('div:nth-child(4) > .oxd-table-row > div:nth-child(6) > .oxd-table-cell-actions > button:nth-child(2)')
+    5) <i data-v-bddebfba="" data-v-f5c763eb="" class="oxd-icon bi-pencil-fill"></i> aka locator('div:nth-child(5) > .oxd-table-row > div:nth-child(6) > .oxd-table-cell-actions > button:nth-child(2)')
+    6) <i data-v-bddebfba="" data-v-f5c763eb="" class="oxd-icon bi-pencil-fill"></i> aka locator('div:nth-child(6) > .oxd-table-row > div:nth-child(6) > .oxd-table-cell-actions > button:nth-child(2)')
+    7) <i data-v-bddebfba="" data-v-f5c763eb="" class="oxd-icon bi-pencil-fill"></i> aka locator('div:nth-child(7) > .oxd-table-row > div:nth-child(6) > .oxd-table-cell-actions > button:nth-child(2)')
+    8) <i data-v-bddebfba="" data-v-f5c763eb="" class="oxd-icon bi-pencil-fill"></i> aka locator('div:nth-child(8) > .oxd-table-row > div:nth-child(6) > .oxd-table-cell-actions > button:nth-child(2)')
+    9) <i data-v-bddebfba="" data-v-f5c763eb="" class="oxd-icon bi-pencil-fill"></i> aka locator('div:nth-child(9) > .oxd-table-row > div:nth-child(6) > .oxd-table-cell-actions > button:nth-child(2)')
+    10) <i data-v-bddebfba="" data-v-f5c763eb="" class="oxd-icon bi-pencil-fill"></i> aka locator('div:nth-child(10) > .oxd-table-row > div:nth-child(6) > .oxd-table-cell-actions > button:nth-child(2)')
+    ...
+
+Call log:
+  - waiting for locator('.oxd-icon-button .bi-pencil-fill')
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=f4e3]:
+  - generic:
+    - complementary [ref=f4e4]:
+      - navigation "Sidepanel" [ref=f4e5]:
+        - generic [ref=f4e6]:
+          - link [ref=f4e7] [cursor=pointer]:
+            - /url: https://www.orangehrm.com/
+            - img "client brand banner" [ref=f4e9]
+          - text: 
+        - generic [ref=f4e10]:
+          - generic [ref=f4e11]:
+            - generic [ref=f4e12]:
+              - textbox "Search" [ref=f4e15]
+              - button "" [ref=f4e16] [cursor=pointer]
+            - separator [ref=f4e18]
+          - list [ref=f4e19]:
+            - listitem [ref=f4e20]:
+              - link "Admin" [ref=f4e21] [cursor=pointer]:
+                - /url: /web/index.php/admin/viewAdminModule
+            - listitem [ref=f4e25]:
+              - link "PIM" [ref=f4e26] [cursor=pointer]:
+                - /url: /web/index.php/pim/viewPimModule
+            - listitem [ref=f4e41]:
+              - link "Leave" [ref=f4e42] [cursor=pointer]:
+                - /url: /web/index.php/leave/viewLeaveModule
+            - listitem [ref=f4e46]:
+              - link "Time" [ref=f4e47] [cursor=pointer]:
+                - /url: /web/index.php/time/viewTimeModule
+            - listitem [ref=f4e54]:
+              - link "Recruitment" [ref=f4e55] [cursor=pointer]:
+                - /url: /web/index.php/recruitment/viewRecruitmentModule
+            - listitem [ref=f4e62]:
+              - link "My Info" [ref=f4e63] [cursor=pointer]:
+                - /url: /web/index.php/pim/viewMyDetails
+            - listitem [ref=f4e70]:
+              - link "Performance" [ref=f4e71] [cursor=pointer]:
+                - /url: /web/index.php/performance/viewPerformanceModule
+            - listitem [ref=f4e80]:
+              - link "Dashboard" [ref=f4e81] [cursor=pointer]:
+                - /url: /web/index.php/dashboard/index
+            - listitem [ref=f4e85]:
+              - link "Directory" [ref=f4e86] [cursor=pointer]:
+                - /url: /web/index.php/directory/viewDirectory
+            - listitem [ref=f4e90]:
+              - link "Maintenance" [ref=f4e91] [cursor=pointer]:
+                - /url: /web/index.php/maintenance/viewMaintenanceModule
+            - listitem [ref=f4e96]:
+              - link "Claim" [ref=f4e97] [cursor=pointer]:
+                - /url: /web/index.php/claim/viewClaimModule
+            - listitem [ref=f4e105]:
+              - link "Buzz" [ref=f4e106] [cursor=pointer]:
+                - /url: /web/index.php/buzz/viewBuzz
+    - banner [ref=f4e110]:
+      - generic [ref=f4e111]:
+        - generic [ref=f4e112]:
+          - text: 
+          - generic [ref=f4e113]:
+            - heading "Admin" [level=6] [ref=f4e114]
+            - heading "/ User Management" [level=6] [ref=f4e115]
+        - link [ref=f4e117]:
+          - /url: https://orangehrm.com/open-source/upgrade-to-advanced
+          - button "Upgrade" [ref=f4e118] [cursor=pointer]
+        - list [ref=f4e124]:
+          - listitem [ref=f4e125]:
+            - generic [ref=f4e126] [cursor=pointer]:
+              - img "profile picture" [ref=f4e127]
+              - paragraph [ref=f4e128]: Grace User_GGZIKVEL
+              - generic [ref=f4e129]: 
+      - navigation "Topbar Menu" [ref=f4e131]:
+        - list [ref=f4e132]:
+          - listitem [ref=f4e133] [cursor=pointer]:
+            - generic [ref=f4e134]:
+              - text: User Management
+              - generic [ref=f4e135]: 
+          - listitem [ref=f4e136] [cursor=pointer]:
+            - generic [ref=f4e137]:
+              - text: Job
+              - generic [ref=f4e138]: 
+          - listitem [ref=f4e139] [cursor=pointer]:
+            - generic [ref=f4e140]:
+              - text: Organization
+              - generic [ref=f4e141]: 
+          - listitem [ref=f4e142] [cursor=pointer]:
+            - generic [ref=f4e143]:
+              - text: Qualifications
+              - generic [ref=f4e144]: 
+          - listitem [ref=f4e145] [cursor=pointer]:
+            - link "Nationalities" [ref=f4e146]:
+              - /url: "#"
+          - listitem [ref=f4e147] [cursor=pointer]:
+            - link "Corporate Branding" [ref=f4e148]:
+              - /url: "#"
+          - listitem [ref=f4e149] [cursor=pointer]:
+            - generic [ref=f4e150]:
+              - text: Configuration
+              - generic [ref=f4e151]: 
+          - button "" [ref=f4e153] [cursor=pointer]
+  - generic [ref=f4e155]:
+    - generic [ref=f4e157]:
+      - generic [ref=f4e158]:
+        - generic [ref=f4e159]:
+          - heading "System Users" [level=5] [ref=f4e161]
+          - button "" [ref=f4e164] [cursor=pointer]
+        - separator [ref=f4e166]
+        - generic [ref=f4e168]:
+          - generic [ref=f4e170]:
+            - generic [ref=f4e172]:
+              - generic [ref=f4e173]: Username
+              - textbox [ref=f4e176]
+            - generic [ref=f4e178]:
+              - generic [ref=f4e179]: User Role
+              - generic [ref=f4e183] [cursor=pointer]:
+                - generic [ref=f4e184]: "-- Select --"
+                - generic [ref=f4e185]: 
+            - generic [ref=f4e188]:
+              - generic [ref=f4e189]: Employee Name
+              - textbox "Type for hints..." [ref=f4e194]
+            - generic [ref=f4e196]:
+              - generic [ref=f4e197]: Status
+              - generic [ref=f4e201] [cursor=pointer]:
+                - generic [ref=f4e202]: "-- Select --"
+                - generic [ref=f4e203]: 
+          - separator [ref=f4e205]
+          - generic [ref=f4e206]:
+            - button "Reset" [ref=f4e207] [cursor=pointer]
+            - button "Search" [active] [ref=f4e208] [cursor=pointer]
+      - generic [ref=f4e209]:
+        - button " Add" [ref=f4e211] [cursor=pointer]:
+          - generic [ref=f4e212]: 
+          - text: Add
+        - generic [ref=f4e213]:
+          - separator [ref=f4e214]
+          - generic [ref=f4e215]: (71) Records Found
+        - table [ref=f4e218]:
+          - rowgroup [ref=f4e219]:
+            - row [ref=f4e220]:
+              - columnheader "" [ref=f4e221]:
+                - generic [ref=f4e223] [cursor=pointer]:
+                  - checkbox "" [ref=f4e224]
+                  - generic [ref=f4e225]: 
+              - columnheader "Username " [ref=f4e227]:
+                - text: Username
+                - generic [ref=f4e228]:
+                  - generic [ref=f4e229] [cursor=pointer]: 
+                  - text:  
+              - columnheader "User Role " [ref=f4e230]:
+                - text: User Role
+                - generic [ref=f4e231]:
+                  - generic [ref=f4e232] [cursor=pointer]: 
+                  - text:  
+              - columnheader "Employee Name " [ref=f4e233]:
+                - text: Employee Name
+                - generic [ref=f4e234]:
+                  - generic [ref=f4e235] [cursor=pointer]: 
+                  - text:  
+              - columnheader "Status " [ref=f4e236]:
+                - text: Status
+                - generic [ref=f4e237]:
+                  - generic [ref=f4e238] [cursor=pointer]: 
+                  - text:  
+              - columnheader "Actions" [ref=f4e239]
+          - rowgroup [ref=f4e240]:
+            - row [ref=f4e242]:
+              - cell "" [ref=f4e243]:
+                - generic [ref=f4e247]:
+                  - checkbox "" [ref=f4e248]
+                  - generic [ref=f4e249]: 
+              - cell "Admin" [ref=f4e251]
+              - cell "Admin" [ref=f4e253]
+              - cell "Grace User_GGZIKVEL" [ref=f4e255]
+              - cell "Enabled" [ref=f4e257]
+              - cell [ref=f4e259]:
+                - generic [ref=f4e260]:
+                  - button "" [ref=f4e261] [cursor=pointer]
+                  - button "" [ref=f4e263] [cursor=pointer]
+            - row [ref=f4e266]:
+              - cell "" [ref=f4e267]:
+                - generic [ref=f4e270] [cursor=pointer]:
+                  - checkbox "" [ref=f4e271]
+                  - generic [ref=f4e272]: 
+              - cell "Aurelia_Kshlerin" [ref=f4e274]
+              - cell "Admin" [ref=f4e276]
+              - cell "A8DCo 010Z" [ref=f4e278]
+              - cell "Enabled" [ref=f4e280]
+              - cell [ref=f4e282]:
+                - generic [ref=f4e283]:
+                  - button "" [ref=f4e284] [cursor=pointer]
+                  - button "" [ref=f4e286] [cursor=pointer]
+            - row [ref=f4e289]:
+              - cell "" [ref=f4e290]:
+                - generic [ref=f4e293] [cursor=pointer]:
+                  - checkbox "" [ref=f4e294]
+                  - generic [ref=f4e295]: 
+              - cell "BabeZGAK" [ref=f4e297]
+              - cell "Admin" [ref=f4e299]
+              - cell "Berthold BeefsteakLN_DHKKY" [ref=f4e301]
+              - cell "Enabled" [ref=f4e303]
+              - cell [ref=f4e305]:
+                - generic [ref=f4e306]:
+                  - button "" [ref=f4e307] [cursor=pointer]
+                  - button "" [ref=f4e309] [cursor=pointer]
+            - row [ref=f4e312]:
+              - cell "" [ref=f4e313]:
+                - generic [ref=f4e316] [cursor=pointer]:
+                  - checkbox "" [ref=f4e317]
+                  - generic [ref=f4e318]: 
+              - cell "BCcBNNHM" [ref=f4e320]
+              - cell "Admin" [ref=f4e322]
+              - cell "Berthold BeefsteakLN_BBdPA" [ref=f4e324]
+              - cell "Enabled" [ref=f4e326]
+              - cell [ref=f4e328]:
+                - generic [ref=f4e329]:
+                  - button "" [ref=f4e330] [cursor=pointer]
+                  - button "" [ref=f4e332] [cursor=pointer]
+            - row [ref=f4e335]:
+              - cell "" [ref=f4e336]:
+                - generic [ref=f4e339] [cursor=pointer]:
+                  - checkbox "" [ref=f4e340]
+                  - generic [ref=f4e341]: 
+              - cell "BDPLbRcB" [ref=f4e343]
+              - cell "ESS" [ref=f4e345]
+              - cell "Admin_dJATAGPQ User_HGbFSLNd" [ref=f4e347]
+              - cell "Enabled" [ref=f4e349]
+              - cell [ref=f4e351]:
+                - generic [ref=f4e352]:
+                  - button "" [ref=f4e353] [cursor=pointer]
+                  - button "" [ref=f4e355] [cursor=pointer]
+            - row [ref=f4e358]:
+              - cell "" [ref=f4e359]:
+                - generic [ref=f4e362] [cursor=pointer]:
+                  - checkbox "" [ref=f4e363]
+                  - generic [ref=f4e364]: 
+              - cell "BLAGfcDD" [ref=f4e366]
+              - cell "ESS" [ref=f4e368]
+              - cell "Linda AndersonLN_HUeTf" [ref=f4e370]
+              - cell "Enabled" [ref=f4e372]
+              - cell [ref=f4e374]:
+                - generic [ref=f4e375]:
+                  - button "" [ref=f4e376] [cursor=pointer]
+                  - button "" [ref=f4e378] [cursor=pointer]
+            - row [ref=f4e381]:
+              - cell "" [ref=f4e382]:
+                - generic [ref=f4e385] [cursor=pointer]:
+                  - checkbox "" [ref=f4e386]
+                  - generic [ref=f4e387]: 
+              - cell "BMPXWFII" [ref=f4e389]
+              - cell "Admin" [ref=f4e391]
+              - cell "Linda AndersonLN_FMAOO" [ref=f4e393]
+              - cell "Enabled" [ref=f4e395]
+              - cell [ref=f4e397]:
+                - generic [ref=f4e398]:
+                  - button "" [ref=f4e399] [cursor=pointer]
+                  - button "" [ref=f4e401] [cursor=pointer]
+            - row [ref=f4e404]:
+              - cell "" [ref=f4e405]:
+                - generic [ref=f4e408] [cursor=pointer]:
+                  - checkbox "" [ref=f4e409]
+                  - generic [ref=f4e410]: 
+              - cell "Bruce Wayne" [ref=f4e412]
+              - cell "ESS" [ref=f4e414]
+              - cell "Hola AlvarezLN_CfERe" [ref=f4e416]
+              - cell "Enabled" [ref=f4e418]
+              - cell [ref=f4e420]:
+                - generic [ref=f4e421]:
+                  - button "" [ref=f4e422] [cursor=pointer]
+                  - button "" [ref=f4e424] [cursor=pointer]
+            - row [ref=f4e427]:
+              - cell "" [ref=f4e428]:
+                - generic [ref=f4e431] [cursor=pointer]:
+                  - checkbox "" [ref=f4e432]
+                  - generic [ref=f4e433]: 
+              - cell "BTAZLYFP" [ref=f4e435]
+              - cell "Admin" [ref=f4e437]
+              - cell "Berthold BeefsteakLN_CcUCI" [ref=f4e439]
+              - cell "Enabled" [ref=f4e441]
+              - cell [ref=f4e443]:
+                - generic [ref=f4e444]:
+                  - button "" [ref=f4e445] [cursor=pointer]
+                  - button "" [ref=f4e447] [cursor=pointer]
+            - row [ref=f4e450]:
+              - cell "" [ref=f4e451]:
+                - generic [ref=f4e454] [cursor=pointer]:
+                  - checkbox "" [ref=f4e455]
+                  - generic [ref=f4e456]: 
+              - cell "BVBOHXUP" [ref=f4e458]
+              - cell "ESS" [ref=f4e460]
+              - cell "Linda AndersonLN_DPTDH" [ref=f4e462]
+              - cell "Enabled" [ref=f4e464]
+              - cell [ref=f4e466]:
+                - generic [ref=f4e467]:
+                  - button "" [ref=f4e468] [cursor=pointer]
+                  - button "" [ref=f4e470] [cursor=pointer]
+            - row [ref=f4e473]:
+              - cell "" [ref=f4e474]:
+                - generic [ref=f4e477] [cursor=pointer]:
+                  - checkbox "" [ref=f4e478]
+                  - generic [ref=f4e479]: 
+              - cell "BZSFbVLQ" [ref=f4e481]
+              - cell "ESS" [ref=f4e483]
+              - cell "Linda AndersonLN_EZKIf" [ref=f4e485]
+              - cell "Enabled" [ref=f4e487]
+              - cell [ref=f4e489]:
+                - generic [ref=f4e490]:
+                  - button "" [ref=f4e491] [cursor=pointer]
+                  - button "" [ref=f4e493] [cursor=pointer]
+            - row [ref=f4e496]:
+              - cell "" [ref=f4e497]:
+                - generic [ref=f4e500] [cursor=pointer]:
+                  - checkbox "" [ref=f4e501]
+                  - generic [ref=f4e502]: 
+              - cell "CcbDHFPM" [ref=f4e504]
+              - cell "ESS" [ref=f4e506]
+              - cell "Reinhard PathfinderLN_EWBNK" [ref=f4e508]
+              - cell "Enabled" [ref=f4e510]
+              - cell [ref=f4e512]:
+                - generic [ref=f4e513]:
+                  - button "" [ref=f4e514] [cursor=pointer]
+                  - button "" [ref=f4e516] [cursor=pointer]
+            - row [ref=f4e519]:
+              - cell "" [ref=f4e520]:
+                - generic [ref=f4e523] [cursor=pointer]:
+                  - checkbox "" [ref=f4e524]
+                  - generic [ref=f4e525]: 
+              - cell "CHWJdbIZ" [ref=f4e527]
+              - cell "ESS" [ref=f4e529]
+              - cell "Linda AndersonLN_fNAOY" [ref=f4e531]
+              - cell "Enabled" [ref=f4e533]
+              - cell [ref=f4e535]:
+                - generic [ref=f4e536]:
+                  - button "" [ref=f4e537] [cursor=pointer]
+                  - button "" [ref=f4e539] [cursor=pointer]
+            - row [ref=f4e542]:
+              - cell "" [ref=f4e543]:
+                - generic [ref=f4e546] [cursor=pointer]:
+                  - checkbox "" [ref=f4e547]
+                  - generic [ref=f4e548]: 
+              - cell "CPKSCBUC" [ref=f4e550]
+              - cell "Admin" [ref=f4e552]
+              - cell "Linda AndersonLN_HaKKc" [ref=f4e554]
+              - cell "Enabled" [ref=f4e556]
+              - cell [ref=f4e558]:
+                - generic [ref=f4e559]:
+                  - button "" [ref=f4e560] [cursor=pointer]
+                  - button "" [ref=f4e562] [cursor=pointer]
+            - row [ref=f4e565]:
+              - cell "" [ref=f4e566]:
+                - generic [ref=f4e569] [cursor=pointer]:
+                  - checkbox "" [ref=f4e570]
+                  - generic [ref=f4e571]: 
+              - cell "DaZcIXMG" [ref=f4e573]
+              - cell "Admin" [ref=f4e575]
+              - cell "Berthold BeefsteakLN_GWSLX" [ref=f4e577]
+              - cell "Enabled" [ref=f4e579]
+              - cell [ref=f4e581]:
+                - generic [ref=f4e582]:
+                  - button "" [ref=f4e583] [cursor=pointer]
+                  - button "" [ref=f4e585] [cursor=pointer]
+            - row [ref=f4e588]:
+              - cell "" [ref=f4e589]:
+                - generic [ref=f4e592] [cursor=pointer]:
+                  - checkbox "" [ref=f4e593]
+                  - generic [ref=f4e594]: 
+              - cell "DDFCVcJV" [ref=f4e596]
+              - cell "Admin" [ref=f4e598]
+              - cell "Linda AndersonLN_BffDT" [ref=f4e600]
+              - cell "Enabled" [ref=f4e602]
+              - cell [ref=f4e604]:
+                - generic [ref=f4e605]:
+                  - button "" [ref=f4e606] [cursor=pointer]
+                  - button "" [ref=f4e608] [cursor=pointer]
+            - row [ref=f4e611]:
+              - cell "" [ref=f4e612]:
+                - generic [ref=f4e615] [cursor=pointer]:
+                  - checkbox "" [ref=f4e616]
+                  - generic [ref=f4e617]: 
+              - cell "DDHEcPGK" [ref=f4e619]
+              - cell "Admin" [ref=f4e621]
+              - cell "Linda AndersonLN_HbNcF" [ref=f4e623]
+              - cell "Enabled" [ref=f4e625]
+              - cell [ref=f4e627]:
+                - generic [ref=f4e628]:
+                  - button "" [ref=f4e629] [cursor=pointer]
+                  - button "" [ref=f4e631] [cursor=pointer]
+            - row [ref=f4e634]:
+              - cell "" [ref=f4e635]:
+                - generic [ref=f4e638] [cursor=pointer]:
+                  - checkbox "" [ref=f4e639]
+                  - generic [ref=f4e640]: 
+              - cell "DDRYcCeP" [ref=f4e642]
+              - cell "Admin" [ref=f4e644]
+              - cell "Linda AndersonLN_BBSJf" [ref=f4e646]
+              - cell "Enabled" [ref=f4e648]
+              - cell [ref=f4e650]:
+                - generic [ref=f4e651]:
+                  - button "" [ref=f4e652] [cursor=pointer]
+                  - button "" [ref=f4e654] [cursor=pointer]
+            - row [ref=f4e657]:
+              - cell "" [ref=f4e658]:
+                - generic [ref=f4e661] [cursor=pointer]:
+                  - checkbox "" [ref=f4e662]
+                  - generic [ref=f4e663]: 
+              - cell "DfREGYQf" [ref=f4e665]
+              - cell "Admin" [ref=f4e667]
+              - cell "Berthold BeefsteakLN_HBYTW" [ref=f4e669]
+              - cell "Enabled" [ref=f4e671]
+              - cell [ref=f4e673]:
+                - generic [ref=f4e674]:
+                  - button "" [ref=f4e675] [cursor=pointer]
+                  - button "" [ref=f4e677] [cursor=pointer]
+            - row [ref=f4e680]:
+              - cell "" [ref=f4e681]:
+                - generic [ref=f4e684] [cursor=pointer]:
+                  - checkbox "" [ref=f4e685]
+                  - generic [ref=f4e686]: 
+              - cell "DGSZaPSR" [ref=f4e688]
+              - cell "ESS" [ref=f4e690]
+              - cell "Linda AndersonLN_GfKPJ" [ref=f4e692]
+              - cell "Enabled" [ref=f4e694]
+              - cell [ref=f4e696]:
+                - generic [ref=f4e697]:
+                  - button "" [ref=f4e698] [cursor=pointer]
+                  - button "" [ref=f4e700] [cursor=pointer]
+            - row [ref=f4e703]:
+              - cell "" [ref=f4e704]:
+                - generic [ref=f4e707] [cursor=pointer]:
+                  - checkbox "" [ref=f4e708]
+                  - generic [ref=f4e709]: 
+              - cell "DMNTUHGc" [ref=f4e711]
+              - cell "ESS" [ref=f4e713]
+              - cell "Linda AndersonLN_GRHXF" [ref=f4e715]
+              - cell "Disabled" [ref=f4e717]
+              - cell [ref=f4e719]:
+                - generic [ref=f4e720]:
+                  - button "" [ref=f4e721] [cursor=pointer]
+                  - button "" [ref=f4e723] [cursor=pointer]
+            - row [ref=f4e726]:
+              - cell "" [ref=f4e727]:
+                - generic [ref=f4e730] [cursor=pointer]:
+                  - checkbox "" [ref=f4e731]
+                  - generic [ref=f4e732]: 
+              - cell "DVKYERQD" [ref=f4e734]
+              - cell "Admin" [ref=f4e736]
+              - cell "Alexandre AndersonLN_GeGIN" [ref=f4e738]
+              - cell "Disabled" [ref=f4e740]
+              - cell [ref=f4e742]:
+                - generic [ref=f4e743]:
+                  - button "" [ref=f4e744] [cursor=pointer]
+                  - button "" [ref=f4e746] [cursor=pointer]
+            - row [ref=f4e749]:
+              - cell "" [ref=f4e750]:
+                - generic [ref=f4e753] [cursor=pointer]:
+                  - checkbox "" [ref=f4e754]
+                  - generic [ref=f4e755]: 
+              - cell "EATNHcHS" [ref=f4e757]
+              - cell "ESS" [ref=f4e759]
+              - cell "Doremon Nobita XukaLN_FAZTK" [ref=f4e761]
+              - cell "Enabled" [ref=f4e763]
+              - cell [ref=f4e765]:
+                - generic [ref=f4e766]:
+                  - button "" [ref=f4e767] [cursor=pointer]
+                  - button "" [ref=f4e769] [cursor=pointer]
+            - row [ref=f4e772]:
+              - cell "" [ref=f4e773]:
+                - generic [ref=f4e776] [cursor=pointer]:
+                  - checkbox "" [ref=f4e777]
+                  - generic [ref=f4e778]: 
+              - cell "EIUUGMJa" [ref=f4e780]
+              - cell "Admin" [ref=f4e782]
+              - cell "Berthold BeefsteakLN_EOXVC" [ref=f4e784]
+              - cell "Disabled" [ref=f4e786]
+              - cell [ref=f4e788]:
+                - generic [ref=f4e789]:
+                  - button "" [ref=f4e790] [cursor=pointer]
+                  - button "" [ref=f4e792] [cursor=pointer]
+            - row [ref=f4e795]:
+              - cell "" [ref=f4e796]:
+                - generic [ref=f4e799] [cursor=pointer]:
+                  - checkbox "" [ref=f4e800]
+                  - generic [ref=f4e801]: 
+              - cell "EUSFNNbU" [ref=f4e803]
+              - cell "Admin" [ref=f4e805]
+              - cell "Berthold BeefsteakLN_GIdef" [ref=f4e807]
+              - cell "Enabled" [ref=f4e809]
+              - cell [ref=f4e811]:
+                - generic [ref=f4e812]:
+                  - button "" [ref=f4e813] [cursor=pointer]
+                  - button "" [ref=f4e815] [cursor=pointer]
+            - row [ref=f4e818]:
+              - cell "" [ref=f4e819]:
+                - generic [ref=f4e822] [cursor=pointer]:
+                  - checkbox "" [ref=f4e823]
+                  - generic [ref=f4e824]: 
+              - cell "EXZbMUKO" [ref=f4e826]
+              - cell "ESS" [ref=f4e828]
+              - cell "Yuki NakamuraLN_BGYcH" [ref=f4e830]
+              - cell "Enabled" [ref=f4e832]
+              - cell [ref=f4e834]:
+                - generic [ref=f4e835]:
+                  - button "" [ref=f4e836] [cursor=pointer]
+                  - button "" [ref=f4e838] [cursor=pointer]
+            - row [ref=f4e841]:
+              - cell "" [ref=f4e842]:
+                - generic [ref=f4e845] [cursor=pointer]:
+                  - checkbox "" [ref=f4e846]
+                  - generic [ref=f4e847]: 
+              - cell "EZERLVTO" [ref=f4e849]
+              - cell "ESS" [ref=f4e851]
+              - cell "Admin_UaZfJDHM User_CYPeBbSf" [ref=f4e853]
+              - cell "Enabled" [ref=f4e855]
+              - cell [ref=f4e857]:
+                - generic [ref=f4e858]:
+                  - button "" [ref=f4e859] [cursor=pointer]
+                  - button "" [ref=f4e861] [cursor=pointer]
+            - row [ref=f4e864]:
+              - cell "" [ref=f4e865]:
+                - generic [ref=f4e868] [cursor=pointer]:
+                  - checkbox "" [ref=f4e869]
+                  - generic [ref=f4e870]: 
+              - cell "FDIKNcVN" [ref=f4e872]
+              - cell "Admin" [ref=f4e874]
+              - cell "Berthold BeefsteakLN_EASeD" [ref=f4e876]
+              - cell "Disabled" [ref=f4e878]
+              - cell [ref=f4e880]:
+                - generic [ref=f4e881]:
+                  - button "" [ref=f4e882] [cursor=pointer]
+                  - button "" [ref=f4e884] [cursor=pointer]
+            - row [ref=f4e887]:
+              - cell "" [ref=f4e888]:
+                - generic [ref=f4e891] [cursor=pointer]:
+                  - checkbox "" [ref=f4e892]
+                  - generic [ref=f4e893]: 
+              - cell "FGIPfWHa" [ref=f4e895]
+              - cell "Admin" [ref=f4e897]
+              - cell "Alexandre AndersonLN_PcUSW" [ref=f4e899]
+              - cell "Disabled" [ref=f4e901]
+              - cell [ref=f4e903]:
+                - generic [ref=f4e904]:
+                  - button "" [ref=f4e905] [cursor=pointer]
+                  - button "" [ref=f4e907] [cursor=pointer]
+            - row [ref=f4e910]:
+              - cell "" [ref=f4e911]:
+                - generic [ref=f4e914] [cursor=pointer]:
+                  - checkbox "" [ref=f4e915]
+                  - generic [ref=f4e916]: 
+              - cell "FILUKMQK" [ref=f4e918]
+              - cell "Admin" [ref=f4e920]
+              - cell "Linda AndersonLN_HRKIN" [ref=f4e922]
+              - cell "Enabled" [ref=f4e924]
+              - cell [ref=f4e926]:
+                - generic [ref=f4e927]:
+                  - button "" [ref=f4e928] [cursor=pointer]
+                  - button "" [ref=f4e930] [cursor=pointer]
+            - row [ref=f4e933]:
+              - cell "" [ref=f4e934]:
+                - generic [ref=f4e937] [cursor=pointer]:
+                  - checkbox "" [ref=f4e938]
+                  - generic [ref=f4e939]: 
+              - cell "FMLName" [ref=f4e941]
+              - cell "ESS" [ref=f4e943]
+              - cell "Qwerty LName" [ref=f4e945]
+              - cell "Enabled" [ref=f4e947]
+              - cell [ref=f4e949]:
+                - generic [ref=f4e950]:
+                  - button "" [ref=f4e951] [cursor=pointer]
+                  - button "" [ref=f4e953] [cursor=pointer]
+            - row [ref=f4e956]:
+              - cell "" [ref=f4e957]:
+                - generic [ref=f4e960] [cursor=pointer]:
+                  - checkbox "" [ref=f4e961]
+                  - generic [ref=f4e962]: 
+              - cell "FMLName1" [ref=f4e964]
+              - cell "ESS" [ref=f4e966]
+              - cell "FName LName" [ref=f4e968]
+              - cell "Enabled" [ref=f4e970]
+              - cell [ref=f4e972]:
+                - generic [ref=f4e973]:
+                  - button "" [ref=f4e974] [cursor=pointer]
+                  - button "" [ref=f4e976] [cursor=pointer]
+            - row [ref=f4e979]:
+              - cell "" [ref=f4e980]:
+                - generic [ref=f4e983] [cursor=pointer]:
+                  - checkbox "" [ref=f4e984]
+                  - generic [ref=f4e985]: 
+              - cell "FUJTIIXQ" [ref=f4e987]
+              - cell "Admin" [ref=f4e989]
+              - cell "Linda AndersonLN_eScIe" [ref=f4e991]
+              - cell "Enabled" [ref=f4e993]
+              - cell [ref=f4e995]:
+                - generic [ref=f4e996]:
+                  - button "" [ref=f4e997] [cursor=pointer]
+                  - button "" [ref=f4e999] [cursor=pointer]
+            - row [ref=f4e1002]:
+              - cell "" [ref=f4e1003]:
+                - generic [ref=f4e1006] [cursor=pointer]:
+                  - checkbox "" [ref=f4e1007]
+                  - generic [ref=f4e1008]: 
+              - cell "GBUdDbTa" [ref=f4e1010]
+              - cell "Admin" [ref=f4e1012]
+              - cell "Berthold BeefsteakLN_CLVKJ" [ref=f4e1014]
+              - cell "Enabled" [ref=f4e1016]
+              - cell [ref=f4e1018]:
+                - generic [ref=f4e1019]:
+                  - button "" [ref=f4e1020] [cursor=pointer]
+                  - button "" [ref=f4e1022] [cursor=pointer]
+            - row [ref=f4e1025]:
+              - cell "" [ref=f4e1026]:
+                - generic [ref=f4e1029] [cursor=pointer]:
+                  - checkbox "" [ref=f4e1030]
+                  - generic [ref=f4e1031]: 
+              - cell "GJFXPdba" [ref=f4e1033]
+              - cell "ESS" [ref=f4e1035]
+              - cell "Yuki NakamuraLN_GcbId" [ref=f4e1037]
+              - cell "Enabled" [ref=f4e1039]
+              - cell [ref=f4e1041]:
+                - generic [ref=f4e1042]:
+                  - button "" [ref=f4e1043] [cursor=pointer]
+                  - button "" [ref=f4e1045] [cursor=pointer]
+            - row [ref=f4e1048]:
+              - cell "" [ref=f4e1049]:
+                - generic [ref=f4e1052] [cursor=pointer]:
+                  - checkbox "" [ref=f4e1053]
+                  - generic [ref=f4e1054]: 
+              - cell "GKSCJafC" [ref=f4e1056]
+              - cell "ESS" [ref=f4e1058]
+              - cell "Linda AndersonLN_BZAGL" [ref=f4e1060]
+              - cell "Enabled" [ref=f4e1062]
+              - cell [ref=f4e1064]:
+                - generic [ref=f4e1065]:
+                  - button "" [ref=f4e1066] [cursor=pointer]
+                  - button "" [ref=f4e1068] [cursor=pointer]
+            - row [ref=f4e1071]:
+              - cell "" [ref=f4e1072]:
+                - generic [ref=f4e1075] [cursor=pointer]:
+                  - checkbox "" [ref=f4e1076]
+                  - generic [ref=f4e1077]: 
+              - cell "gracetest123" [ref=f4e1079]
+              - cell "Admin" [ref=f4e1081]
+              - cell "Grace User_GGZIKVEL" [ref=f4e1083]
+              - cell "Enabled" [ref=f4e1085]
+              - cell [ref=f4e1087]:
+                - generic [ref=f4e1088]:
+                  - button "" [ref=f4e1089] [cursor=pointer]
+                  - button "" [ref=f4e1091] [cursor=pointer]
+            - row [ref=f4e1094]:
+              - cell "" [ref=f4e1095]:
+                - generic [ref=f4e1098] [cursor=pointer]:
+                  - checkbox "" [ref=f4e1099]
+                  - generic [ref=f4e1100]: 
+              - cell "GUWeAbTU" [ref=f4e1102]
+              - cell "Admin" [ref=f4e1104]
+              - cell "Linda AndersonLN_BIRdH" [ref=f4e1106]
+              - cell "Enabled" [ref=f4e1108]
+              - cell [ref=f4e1110]:
+                - generic [ref=f4e1111]:
+                  - button "" [ref=f4e1112] [cursor=pointer]
+                  - button "" [ref=f4e1114] [cursor=pointer]
+            - row [ref=f4e1117]:
+              - cell "" [ref=f4e1118]:
+                - generic [ref=f4e1121] [cursor=pointer]:
+                  - checkbox "" [ref=f4e1122]
+                  - generic [ref=f4e1123]: 
+              - cell "GZfZEVEZ" [ref=f4e1125]
+              - cell "ESS" [ref=f4e1127]
+              - cell "Reinhard PathfinderLN_HeBDT" [ref=f4e1129]
+              - cell "Enabled" [ref=f4e1131]
+              - cell [ref=f4e1133]:
+                - generic [ref=f4e1134]:
+                  - button "" [ref=f4e1135] [cursor=pointer]
+                  - button "" [ref=f4e1137] [cursor=pointer]
+            - row [ref=f4e1140]:
+              - cell "" [ref=f4e1141]:
+                - generic [ref=f4e1144] [cursor=pointer]:
+                  - checkbox "" [ref=f4e1145]
+                  - generic [ref=f4e1146]: 
+              - cell "HaDQeaaC" [ref=f4e1148]
+              - cell "Admin" [ref=f4e1150]
+              - cell "Berthold BeefsteakLN_dRfOQ" [ref=f4e1152]
+              - cell "Enabled" [ref=f4e1154]
+              - cell [ref=f4e1156]:
+                - generic [ref=f4e1157]:
+                  - button "" [ref=f4e1158] [cursor=pointer]
+                  - button "" [ref=f4e1160] [cursor=pointer]
+            - row [ref=f4e1163]:
+              - cell "" [ref=f4e1164]:
+                - generic [ref=f4e1167] [cursor=pointer]:
+                  - checkbox "" [ref=f4e1168]
+                  - generic [ref=f4e1169]: 
+              - cell "HeHeHe Helicote GeAeXeYB" [ref=f4e1171]
+              - cell "Admin" [ref=f4e1173]
+              - cell "Wolfgang SchneiderLN_dAAdX" [ref=f4e1175]
+              - cell "Disabled" [ref=f4e1177]
+              - cell [ref=f4e1179]:
+                - generic [ref=f4e1180]:
+                  - button "" [ref=f4e1181] [cursor=pointer]
+                  - button "" [ref=f4e1183] [cursor=pointer]
+            - row [ref=f4e1186]:
+              - cell "" [ref=f4e1187]:
+                - generic [ref=f4e1190] [cursor=pointer]:
+                  - checkbox "" [ref=f4e1191]
+                  - generic [ref=f4e1192]: 
+              - cell "HeHeHe Helicote HDaTaaBB" [ref=f4e1194]
+              - cell "Admin" [ref=f4e1196]
+              - cell "Wolfgang SchneiderLN_DcWQF" [ref=f4e1198]
+              - cell "Disabled" [ref=f4e1200]
+              - cell [ref=f4e1202]:
+                - generic [ref=f4e1203]:
+                  - button "" [ref=f4e1204] [cursor=pointer]
+                  - button "" [ref=f4e1206] [cursor=pointer]
+            - row [ref=f4e1209]:
+              - cell "" [ref=f4e1210]:
+                - generic [ref=f4e1213] [cursor=pointer]:
+                  - checkbox "" [ref=f4e1214]
+                  - generic [ref=f4e1215]: 
+              - cell "HeNDdfHT" [ref=f4e1217]
+              - cell "ESS" [ref=f4e1219]
+              - cell "Linda AndersonLN_LfADX" [ref=f4e1221]
+              - cell "Disabled" [ref=f4e1223]
+              - cell [ref=f4e1225]:
+                - generic [ref=f4e1226]:
+                  - button "" [ref=f4e1227] [cursor=pointer]
+                  - button "" [ref=f4e1229] [cursor=pointer]
+            - row [ref=f4e1232]:
+              - cell "" [ref=f4e1233]:
+                - generic [ref=f4e1236] [cursor=pointer]:
+                  - checkbox "" [ref=f4e1237]
+                  - generic [ref=f4e1238]: 
+              - cell "HHICVWGc" [ref=f4e1240]
+              - cell "ESS" [ref=f4e1242]
+              - cell "Doremon Nobita XukaLN_HPTJa" [ref=f4e1244]
+              - cell "Enabled" [ref=f4e1246]
+              - cell [ref=f4e1248]:
+                - generic [ref=f4e1249]:
+                  - button "" [ref=f4e1250] [cursor=pointer]
+                  - button "" [ref=f4e1252] [cursor=pointer]
+            - row [ref=f4e1255]:
+              - cell "" [ref=f4e1256]:
+                - generic [ref=f4e1259] [cursor=pointer]:
+                  - checkbox "" [ref=f4e1260]
+                  - generic [ref=f4e1261]: 
+              - cell "jaeminna" [ref=f4e1263]
+              - cell "ESS" [ref=f4e1265]
+              - cell "Jaemin Na" [ref=f4e1267]
+              - cell "Enabled" [ref=f4e1269]
+              - cell [ref=f4e1271]:
+                - generic [ref=f4e1272]:
+                  - button "" [ref=f4e1273] [cursor=pointer]
+                  - button "" [ref=f4e1275] [cursor=pointer]
+            - row [ref=f4e1278]:
+              - cell "" [ref=f4e1279]:
+                - generic [ref=f4e1282] [cursor=pointer]:
+                  - checkbox "" [ref=f4e1283]
+                  - generic [ref=f4e1284]: 
+              - cell "Jalal1790924857" [ref=f4e1286]
+              - cell "ESS" [ref=f4e1288]
+              - cell "Jalal1790924857 Udin" [ref=f4e1290]
+              - cell "Enabled" [ref=f4e1292]
+              - cell [ref=f4e1294]:
+                - generic [ref=f4e1295]:
+                  - button "" [ref=f4e1296] [cursor=pointer]
+                  - button "" [ref=f4e1298] [cursor=pointer]
+            - row [ref=f4e1301]:
+              - cell "" [ref=f4e1302]:
+                - generic [ref=f4e1305] [cursor=pointer]:
+                  - checkbox "" [ref=f4e1306]
+                  - generic [ref=f4e1307]: 
+              - cell "Jalal1790926954" [ref=f4e1309]
+              - cell "ESS" [ref=f4e1311]
+              - cell "Jalal1790926954 Udin" [ref=f4e1313]
+              - cell "Enabled" [ref=f4e1315]
+              - cell [ref=f4e1317]:
+                - generic [ref=f4e1318]:
+                  - button "" [ref=f4e1319] [cursor=pointer]
+                  - button "" [ref=f4e1321] [cursor=pointer]
+            - row [ref=f4e1324]:
+              - cell "" [ref=f4e1325]:
+                - generic [ref=f4e1328] [cursor=pointer]:
+                  - checkbox "" [ref=f4e1329]
+                  - generic [ref=f4e1330]: 
+              - cell "Jobinsam@6742" [ref=f4e1332]
+              - cell "ESS" [ref=f4e1334]
+              - cell "Jobin Sam" [ref=f4e1336]
+              - cell "Enabled" [ref=f4e1338]
+              - cell [ref=f4e1340]:
+                - generic [ref=f4e1341]:
+                  - button "" [ref=f4e1342] [cursor=pointer]
+                  - button "" [ref=f4e1344] [cursor=pointer]
+            - row [ref=f4e1347]:
+              - cell "" [ref=f4e1348]:
+                - generic [ref=f4e1351] [cursor=pointer]:
+                  - checkbox "" [ref=f4e1352]
+                  - generic [ref=f4e1353]: 
+              - cell "KzclSlRGLT" [ref=f4e1355]
+              - cell "ESS" [ref=f4e1357]
+              - cell "Bernardo Gerhold" [ref=f4e1359]
+              - cell "Enabled" [ref=f4e1361]
+              - cell [ref=f4e1363]:
+                - generic [ref=f4e1364]:
+                  - button "" [ref=f4e1365] [cursor=pointer]
+                  - button "" [ref=f4e1367] [cursor=pointer]
+            - row [ref=f4e1370]:
+              - cell "" [ref=f4e1371]:
+                - generic [ref=f4e1374] [cursor=pointer]:
+                  - checkbox "" [ref=f4e1375]
+                  - generic [ref=f4e1376]: 
+              - cell "L1_test074246" [ref=f4e1378]
+              - cell "ESS" [ref=f4e1380]
+              - cell "L1 Track" [ref=f4e1382]
+              - cell "Enabled" [ref=f4e1384]
+              - cell [ref=f4e1386]:
+                - generic [ref=f4e1387]:
+                  - button "" [ref=f4e1388] [cursor=pointer]
+                  - button "" [ref=f4e1390] [cursor=pointer]
+        - navigation "Pagination Navigation" [ref=f4e1393]:
+          - list [ref=f4e1394]:
+            - listitem [ref=f4e1395]:
+              - button "1" [ref=f4e1396] [cursor=pointer]
+            - listitem [ref=f4e1397]:
+              - button "2" [ref=f4e1398] [cursor=pointer]
+            - listitem [ref=f4e1399]:
+              - button "" [ref=f4e1400] [cursor=pointer]
+    - generic [ref=f4e1402]:
+      - paragraph [ref=f4e1403]: OrangeHRM OS 5.9
+      - paragraph [ref=f4e1404]:
+        - text: © 2005 - 2026
+        - link "OrangeHRM, Inc" [ref=f4e1405] [cursor=pointer]:
+          - /url: http://www.orangehrm.com
+        - text: . All rights reserved.
+```
+
+# Test source
+
+```ts
+  1  | import{Page,Locator} from "@playwright/test";
+  2  | 
+  3  | export class BasePage{
+  4  |  
+  5  |     protected readonly page:Page;
+  6  |     protected readonly searchButton:Locator;
+  7  |     protected readonly addButton:Locator;
+  8  |     protected readonly saveButton:Locator;
+  9  |     protected readonly editButton:Locator;
+  10 | 
+  11 |     constructor(page:Page){
+  12 |         this.page=page;
+  13 |         this.searchButton=page.getByRole('button',{name:' Search '});
+  14 |         this.addButton=page.getByRole('button',{name:'Add'});
+  15 |         this.saveButton=page.getByRole('button',{name:'Save'});
+  16 |         this.editButton=page.locator(".oxd-icon-button .bi-pencil-fill");
+  17 |     }
+  18 | 
+  19 |     protected async clickOnSearch(){
+  20 |        await this.searchButton.click();   
+  21 |     }
+  22 | 
+  23 |     protected async takeScreenshot(name: string) {
+  24 |     await this.page.screenshot({ path: `screenshots/${name}.png` });
+  25 | }
+  26 | 
+  27 |     protected async goBack() {
+  28 |           await this.page.goBack();
+  29 | }
+  30 | 
+  31 |     protected async waitForPageLoad() {
+  32 |            await this.page.waitForLoadState("networkidle");
+  33 | }
+  34 | 
+  35 |     protected async clickOnSaveButton(){
+  36 |            await this.saveButton.click();   
+  37 | }
+  38 |     
+  39 |     protected async clickOnAddButton(){
+  40 |            await this.addButton.click();   
+  41 | }
+  42 |     protected async clickOnSearchButton(){
+  43 |             await this.saveButton.click();
+  44 |     }
+  45 |     
+  46 |     protected async clickOnEditButton(){
+> 47 |             await this.editButton.click();
+     |                                   ^ Error: locator.click: Error: strict mode violation: locator('.oxd-icon-button .bi-pencil-fill') resolved to 50 elements:
+  48 |     }
+  49 | 
+  50 | 
+  51 | }
+```

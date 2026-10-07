@@ -1,0 +1,7 @@
+Password inputs: 2
+Here is log:  0 <input data-v-1f99f73c="" class="oxd-input oxd-input--active" type="password" autocomplete="off">
+Here is log:  1 <input data-v-1f99f73c="" class="oxd-input oxd-input--active" type="password" autocomplete="off">
+0 visible: true
+1 visible: true
+<div data-v-957b4417="" data-v-a64d9b08="" class="oxd-input-group oxd-input-field-bottom-space"><div data-v-957b4417="" class="oxd-input-group__label-wrapper"><!----><label data-v-30ff22b1="" data-v-957b4417="" class="oxd-label oxd-input-field-required">Password</label></div><div data-v-957b4417="" class=""><input data-v-1f99f73c="" class="oxd-input oxd-input--active" type="password" autocomplete="off"></div><!----></div>
+<div data-v-957b4417="" data-v-a64d9b08="" class="oxd-input-group oxd-input-field-bottom-space"><div data-v-957b4417="" class="oxd-input-group__label-wrapper"><!----><label data-v-30ff22b1="" data-v-957b4417="" class="oxd-label oxd-input-field-required">Confirm Password</label></div><div data-v-957b4417="" class=""><input data-v-1f99f73c="" class="oxd-input oxd-input--active" type="password" autocomplete="off"></div><!----></div>

@@ -7,12 +7,14 @@ export class LeftNavigationPage{
     private readonly pimLink:Locator;
     private readonly orangeHrmLogo:Locator;
     private readonly leftNavigationPanel:Locator;
+    private readonly adminLink:Locator;
 
     constructor(page:Page){
         this.page=page;
         this.pimLink= page.getByRole('link',{name:'PIM'});
         this.orangeHrmLogo=page.getByAltText("client brand banner");
         this.leftNavigationPanel=page.getByRole('navigation').locator('.oxd-sidepanel-body');
+        this.adminLink=page.getByRole('link',{name:'Admin'});
     }
 
     /**
@@ -27,4 +29,8 @@ export class LeftNavigationPage{
     public leftNavigationPanelVisible():Locator{
            return this.leftNavigationPanel;
     }
+    async openAdminModule(){
+        await this.adminLink.click();
+    }
+
 }

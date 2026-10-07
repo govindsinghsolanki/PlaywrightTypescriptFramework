@@ -1,0 +1,183 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: admin.spec.ts >> Delete User
+- Location: tests\admin.spec.ts:41:6
+
+# Error details
+
+```
+Test timeout of 30000ms exceeded.
+```
+
+```
+Error: expect(locator).toBeVisible() failed
+
+Locator: locator('.oxd-text--toast-message').filter({ hasText: 'No Records Found' })
+Expected: visible
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 5000ms
+  - waiting for locator('.oxd-text--toast-message').filter({ hasText: 'No Records Found' })
+  - Test timeout of 30000ms exceeded.
+
+```
+
+```yaml
+- complementary:
+  - navigation "Sidepanel":
+    - link "client brand banner":
+      - /url: https://www.orangehrm.com/
+      - img "client brand banner"
+    - textbox "Search"
+    - button ""
+    - separator
+    - list:
+      - listitem:
+        - link "Admin":
+          - /url: /web/index.php/admin/viewAdminModule
+      - listitem:
+        - link "PIM":
+          - /url: /web/index.php/pim/viewPimModule
+      - listitem:
+        - link "Leave":
+          - /url: /web/index.php/leave/viewLeaveModule
+      - listitem:
+        - link "Time":
+          - /url: /web/index.php/time/viewTimeModule
+      - listitem:
+        - link "Recruitment":
+          - /url: /web/index.php/recruitment/viewRecruitmentModule
+      - listitem:
+        - link "My Info":
+          - /url: /web/index.php/pim/viewMyDetails
+      - listitem:
+        - link "Performance":
+          - /url: /web/index.php/performance/viewPerformanceModule
+      - listitem:
+        - link "Dashboard":
+          - /url: /web/index.php/dashboard/index
+      - listitem:
+        - link "Directory":
+          - /url: /web/index.php/directory/viewDirectory
+      - listitem:
+        - link "Maintenance":
+          - /url: /web/index.php/maintenance/viewMaintenanceModule
+      - listitem:
+        - link "Claim":
+          - /url: /web/index.php/claim/viewClaimModule
+          - img
+          - text: Claim
+      - listitem:
+        - link "Buzz":
+          - /url: /web/index.php/buzz/viewBuzz
+- banner:
+  - heading "Admin" [level=6]
+  - heading "/ User Management" [level=6]
+  - link "Upgrade":
+    - /url: https://orangehrm.com/open-source/upgrade-to-advanced
+    - button "Upgrade"
+  - list:
+    - listitem:
+      - img "profile picture"
+      - paragraph: Test123 Demo
+      - text: 
+  - navigation "Topbar Menu":
+    - list:
+      - listitem: User Management 
+      - listitem: Job 
+      - listitem: Organization 
+      - listitem: Qualifications 
+      - listitem:
+        - link "Nationalities":
+          - /url: "#"
+      - listitem:
+        - link "Corporate Branding":
+          - /url: "#"
+      - listitem: Configuration 
+      - button ""
+- heading "System Users" [level=5]
+- button ""
+- separator
+- text: Username
+- textbox: test_Mckayla.Dietrich
+- text: User Role -- Select --  Employee Name
+- textbox "Type for hints..."
+- text: Status -- Select -- 
+- separator
+- button "Reset"
+- button "Search"
+- button " Add"
+- table
+- paragraph: OrangeHRM OS 5.9
+- paragraph:
+  - text: © 2005 - 2026
+  - link "OrangeHRM, Inc":
+    - /url: http://www.orangehrm.com
+  - text: . All rights reserved.
+```
+
+# Test source
+
+```ts
+  1  | import{test,expect} from "../fixtures/hooks-fixture.ts";
+  2  | import adminData from "../test-data/admin-module-data.json";
+  3  | import { createUserName} from "../factories/admin.factory.ts";              
+  4  | import { AdminData } from "../types/admin.types.ts";
+  5  | 
+  6  | test("Verify Open User Management",async({adminPage,leftNavigationPage,gotoUrl})=>{
+  7  |     await leftNavigationPage.openAdminModule();
+  8  |     await expect(adminPage.getUserManagementPage()).toBeVisible();
+  9  |     await expect(adminPage.getUserTable()).toBeVisible();
+  10 | })
+  11 | 
+  12 | test("Add New User",async({adminPage,leftNavigationPage,gotoUrl})=>{
+  13 | 
+  14 |     const user:AdminData={
+  15 |         /**
+  16 |          * ...(spread operator is used to copy the contents of object or array into another object or array)
+  17 |          */
+  18 |         ...adminData.userManagement.addUser,
+  19 |          username:createUserName()
+  20 |     }
+  21 |     await leftNavigationPage.openAdminModule();
+  22 |     await adminPage.addAdmin(user);
+  23 |     await adminPage.searchNewCreatedUser(user);
+  24 |     await expect(adminPage.verifyNewUserCreatedSuccessfully(user)).toBeVisible();
+  25 | })
+  26 | 
+  27 | test("Edit User",async({adminPage,leftNavigationPage,gotoUrl})=>{
+  28 |   const user:AdminData={
+  29 |         ...adminData.userManagement.addUser,
+  30 |          username:createUserName()
+  31 |     } 
+  32 |     await leftNavigationPage.openAdminModule();
+  33 |     await adminPage.addAdmin(user);
+  34 |     await adminPage.searchNewCreatedUser(user);
+  35 |     await adminPage.editUser(adminData.userManagement.editUser.status,user.username);
+  36 |     await adminPage.searchNewCreatedUser(user);
+  37 |     const status=await adminPage.verifyUserUpdatedDetails(user.username);
+  38 |     await expect(status).toHaveText(adminData.userManagement.editUser.status);
+  39 | })  
+  40 | 
+  41 | test.only("Delete User",async({adminPage,leftNavigationPage,gotoUrl})=>{
+  42 |     const user:AdminData={
+  43 |         ...adminData.userManagement.addUser,
+  44 |         username:createUserName()
+  45 |     }
+  46 |     await leftNavigationPage.openAdminModule();
+  47 |     await adminPage.addAdmin(user);
+  48 |     // console.log("Username is: "+user.username);
+  49 |     await adminPage.searchNewCreatedUser(user);
+  50 |     await adminPage.deleteUser(user.username);
+> 51 |     await expect(adminPage.expectUserIsDeleted()).toBeVisible();
+     |                                                   ^ Error: expect(locator).toBeVisible() failed
+  52 | 
+  53 | })
+```

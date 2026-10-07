@@ -1,13 +1,74 @@
+# name: Playwright Tests
+# on:
+#   push:
+#     branches: [ main, master ]
+#   pull_request:
+#     branches: [ main, master ]
+
+# jobs:
+#   test:
+#     timeout-minutes: 60
+#     runs-on: ubuntu-latest
+
+#     steps:
+#      # 1. Checkout source code
+#     - uses: actions/checkout@v4
+#      # 2. Setup Node
+#     - uses: actions/setup-node@v4
+#       with:
+#         node-version: lts/*
+#      # 3. Install dependencies   
+#     - name: Install dependencies
+#       run: npm ci
+#      # 4. Install Playwright browsers  
+#     - name: Install Playwright Browsers
+#       run: npx playwright install --with-deps
+
+#     # 5. Clean previous Allure results and report
+#     - name: Clean Allure
+#       run: |
+#            rm -rf allure-results
+#            rm -rf allure-report 
+
+#     # 6. Run test cases
+#     - name: Run Playwright tests
+#       env:
+#          ENV_NAME: qa
+#          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+#       run: npx playwright test
+
+#     # 7. Generate Allure-results and Allure HTML report
+#     - name: Generate Allure Report
+#       if: ${{ !cancelled() }}
+#       run: npx allure generate allure-results --clean -o allure-report
+
+#     # 8. Upload report as GitHub Actions artifact
+#     - name: Upload Allure Report
+#       # if: ${{ !cancelled() }}
+#       if: always()
+#       uses: actions/upload-artifact@v4
+#       with:
+#          name: allure-report
+#          path: allure-report/
+#          retention-days: 30
+
+
 name: Playwright Tests
 on:
   push:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        shard:[1,2,3,4]
+        
     steps:
      # 1. Checkout source code
     - uses: actions/checkout@v4
@@ -29,11 +90,11 @@ jobs:
            rm -rf allure-report 
 
     # 6. Run test cases
-    - name: Run Playwright tests
+    - name: Run Playwright tests (Shard ${{matrix.shard}})
       env:
          ENV_NAME: qa
          SECRET_KEY: ${{ secrets.SECRET_KEY }}
-      run: npx playwright test
+      run: npx playwright test --shard=${{matrix.shard}}/4
 
     # 7. Generate Allure-results and Allure HTML report
     - name: Generate Allure Report
@@ -49,3 +110,5 @@ jobs:
          name: allure-report
          path: allure-report/
          retention-days: 30
+
+

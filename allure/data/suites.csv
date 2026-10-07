@@ -1,0 +1,4 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","7550","[Login] Verify that the user cannot login with an invalid username","chromium","2026-08-25","passed","2026-08-25","","login-module.spec.ts","",""
+"","10812","Global Setup for Auto Login","Setup","2026-08-25","passed","2026-08-25","","global.setup.ts","",""
+"","7681","[Login] Verify that the user cannot login with an invalid password","chromium","2026-08-25","passed","2026-08-25","","login-module.spec.ts","",""

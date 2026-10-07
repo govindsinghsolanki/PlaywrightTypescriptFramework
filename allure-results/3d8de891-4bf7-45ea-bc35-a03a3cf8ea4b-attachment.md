@@ -1,0 +1,154 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: create-employee.spec.ts >> EMP-002 - Search Employee
+- Location: tests\create-employee.spec.ts:12:6
+
+# Error details
+
+```
+Error: expect(locator).toBeVisible() failed
+
+Locator: getByRole('button', { name: ' Search ' })
+Expected: visible
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 5000ms
+  - waiting for getByRole('button', { name: ' Search ' })
+
+```
+
+```yaml
+- complementary:
+  - navigation "Sidepanel":
+    - link "client brand banner":
+      - /url: https://www.orangehrm.com/
+      - img "client brand banner"
+    - textbox "Search"
+    - button ""
+    - separator
+    - list:
+      - listitem:
+        - link "Admin":
+          - /url: /web/index.php/admin/viewAdminModule
+      - listitem:
+        - link "PIM":
+          - /url: /web/index.php/pim/viewPimModule
+      - listitem:
+        - link "Leave":
+          - /url: /web/index.php/leave/viewLeaveModule
+      - listitem:
+        - link "Time":
+          - /url: /web/index.php/time/viewTimeModule
+      - listitem:
+        - link "Recruitment":
+          - /url: /web/index.php/recruitment/viewRecruitmentModule
+      - listitem:
+        - link "My Info":
+          - /url: /web/index.php/pim/viewMyDetails
+      - listitem:
+        - link "Performance":
+          - /url: /web/index.php/performance/viewPerformanceModule
+      - listitem:
+        - link "Dashboard":
+          - /url: /web/index.php/dashboard/index
+      - listitem:
+        - link "Directory":
+          - /url: /web/index.php/directory/viewDirectory
+      - listitem:
+        - link "Maintenance":
+          - /url: /web/index.php/maintenance/viewMaintenanceModule
+      - listitem:
+        - link "Claim":
+          - /url: /web/index.php/claim/viewClaimModule
+          - img
+          - text: Claim
+      - listitem:
+        - link "Buzz":
+          - /url: /web/index.php/buzz/viewBuzz
+- banner:
+  - heading "PIM" [level=6]
+  - link "Upgrade":
+    - /url: https://orangehrm.com/open-source/upgrade-to-advanced
+    - button "Upgrade"
+  - list:
+    - listitem:
+      - img "profile picture"
+      - paragraph: Anusha PB
+      - text: 
+  - navigation "Topbar Menu":
+    - list:
+      - listitem: Configuration 
+      - listitem:
+        - link "Employee List":
+          - /url: "#"
+      - listitem:
+        - link "Add Employee":
+          - /url: "#"
+      - listitem:
+        - link "Reports":
+          - /url: "#"
+      - button ""
+- heading "Add Employee" [level=6]
+- separator
+- button "Choose File"
+- img "profile picture"
+- button ""
+- paragraph: "Accepts jpg, .png, .gif up to 1MB. Recommended dimensions: 200px X 200px"
+- text: Employee Full Name*
+- textbox "First Name": Cloyd
+- textbox "Middle Name": Elijah
+- textbox "Last Name": Schroeder
+- text: Employee Id
+- textbox: Emp5190
+- separator
+- paragraph: Create Login Details
+- checkbox
+- separator
+- paragraph: "* Required"
+- button "Cancel"
+- button "Save"
+- paragraph: OrangeHRM OS 5.9
+- paragraph:
+  - text: © 2005 - 2026
+  - link "OrangeHRM, Inc":
+    - /url: http://www.orangehrm.com
+  - text: . All rights reserved.
+- text: 
+- paragraph: Success
+- paragraph: Successfully Saved
+- button "×"
+```
+
+# Test source
+
+```ts
+  1  | import{test,expect} from "../fixtures/hooks-fixture";
+  2  | import { createEmployee } from "../factories/employee.factory";
+  3  | 
+  4  | test("EMP-001 - Create employee", async({gotoUrl,leftNavigationPage,employeePage})=>{
+  5  |        leftNavigationPage.openPimModule(); 
+  6  |        const employee= createEmployee();
+  7  |        await employeePage.addEmployee(employee); 
+  8  |        await expect(employeePage.newAddedEmployeeName()).toBeVisible({timeout:10000});
+  9  |        await expect(employeePage.newAddedEmployeeName()).toContainText(`${employee.firstName} ${employee.lastName}`);    
+  10 | });
+  11 | 
+  12 | test.only("EMP-002 - Search Employee", async({gotoUrl,leftNavigationPage,employeePage})=>{
+  13 |        leftNavigationPage.openPimModule(); 
+  14 |        const employee= createEmployee();
+  15 |        await employeePage.addEmployee(employee); 
+> 16 |        await expect(employeePage.searchButton).toBeVisible();
+     |                                                ^ Error: expect(locator).toBeVisible() failed
+  17 |        await employeePage.searchEmployee(employee.employeeId);
+  18 |        expect(await employeePage.isEmployeePresent(`${employee.firstName} ${employee.middleName}`)).toBeTruthy();
+  19 | });
+  20 | 
+```

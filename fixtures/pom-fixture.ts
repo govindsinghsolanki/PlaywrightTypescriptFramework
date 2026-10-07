@@ -4,6 +4,8 @@ import {DashboardPage} from "../pages/DashboardPage";
 import {UserPage} from "../pages/UserPage";
 import {LeftNavigationPage} from "../pages/LeftNavigationPage";
 import {PimPage} from "../pages/PimPage";
+import {EmployeePage} from "../pages/EmployeePage";
+import {AdminPage} from "../pages/AdminPage";
 
 type PomFixtureType={
     loginPage:LoginPage;  //loginPage-->Fixture Name
@@ -11,6 +13,8 @@ type PomFixtureType={
     userPage:UserPage;
     leftNavigationPage:LeftNavigationPage
     pimPage:PimPage;
+    employeePage:EmployeePage;
+    adminPage:AdminPage;
 }
 
 export const test=baseTest.extend<PomFixtureType>({
@@ -33,6 +37,14 @@ export const test=baseTest.extend<PomFixtureType>({
         pimPage:async({page},use)=>{
             const pimPage=new PimPage(page);
             await use(pimPage);
-    }
-
+    },
+        employeePage:async({page},use)=>{
+            const employeePage=new EmployeePage(page);
+            await use(employeePage);
+    },
+        adminPage:async({page},use)=>{
+            const adminPage=new AdminPage(page);
+            await use(adminPage);
+    }        
+        
 })

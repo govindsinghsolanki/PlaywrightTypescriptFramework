@@ -1,0 +1,5 @@
+Password inputs: 2
+Here is log:  0 <input data-v-1f99f73c="" class="oxd-input oxd-input--active" type="password" autocomplete="off">
+Here is log:  1 <input data-v-1f99f73c="" class="oxd-input oxd-input--active" type="password" autocomplete="off">
+0 visible: true
+1 visible: true
