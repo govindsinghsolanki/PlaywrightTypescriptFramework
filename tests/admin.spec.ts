@@ -35,7 +35,7 @@ test("Edit User",{tag:["@Smoke","@Regression"]},async({adminPage,leftNavigationP
     await adminPage.editUser(adminData.userManagement.editUser.status,user.username);
     await adminPage.searchUser(user);
     const status=await adminPage.verifyUserUpdatedDetails(user.username);
-    await expect(status).toHaveText(adminData.userManagement.editUser.status);
+    await expect(status).toHaveText(adminData.userManagement.editUser.status)
 })  
 
 test("Delete User",{tag:["@Regression","@Functional"]},async({adminPage,leftNavigationPage,gotoUrl})=>{
