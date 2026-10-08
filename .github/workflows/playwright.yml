@@ -67,7 +67,7 @@ jobs:
 
     strategy:
       matrix:
-        shard:[1,2,3,4]
+        shard: [1, 2, 3, 4]
         
     steps:
      # 1. Checkout source code
