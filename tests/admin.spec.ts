@@ -38,7 +38,7 @@ test("Edit User",{tag:["@Smoke","@Regression"]},async({adminPage,leftNavigationP
     await expect(status).toHaveText(adminData.userManagement.editUser.status);
 })  
 
-test.only("Delete User",{tag:["@Regression","@Functional"]},async({adminPage,leftNavigationPage,gotoUrl})=>{
+test("Delete User",{tag:["@Regression","@Functional"]},async({adminPage,leftNavigationPage,gotoUrl})=>{
     const user:AdminData={
         ...adminData.userManagement.addUser,
         username:createUserName()
